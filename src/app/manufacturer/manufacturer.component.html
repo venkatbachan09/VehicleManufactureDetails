@@ -1,0 +1,56 @@
+<div class="container">
+<div class="col-xl-12">
+    <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Manufacturer Details</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let make of manufacturer.Results">
+            <td>
+              <div>
+                <h5>{{make.Mfr_CommonName}}</h5>
+              <div *ngFor="let vehicletype of make.VehicleTypes">
+                <table>
+                    <tr>
+                      <th>Type of Vehicle</th>
+                      <th>Do we make?</th>
+                    </tr>
+                    <tr>
+                      <td>{{vehicletype.Name | json}}</td>
+                      <td>{{vehicletype.IsPrimary | json}}</td>
+                    </tr>
+                  </table>
+              </div>
+            </div>
+            </td>
+            <td>
+              <button class="btn btn-primary" (click)="selectManufacturer(make.Mfr_CommonName)">Get Vehicle Types</button>
+            </td>
+            <td *ngIf="manufacturerdet">
+                <div class="col-xl-12" *ngFor="let vehicletype of manufacturerdet.Results">
+                  <div *ngIf="vehicletype.MakeName == make.Mfr_CommonName">
+                    <table>
+                        <tr>
+                          <th>Make ID</th>
+                          <th>Make Name</th>
+                          <th>Vehicle Type Id</th>
+                          <th>Vehicle Type Name</th>
+                        </tr>
+                        <tr>
+                          <td>{{vehicletype.MakeId | json}}</td>
+                          <td>{{vehicletype.MakeName | json}}</td>
+                          <td>{{vehicletype.VehicleTypeId}}</td>
+                          <td>{{vehicletype.VehicleTypeName | json}}</td>
+                        </tr>
+                      </table>
+                  </div>
+                  </div>
+            </td>  
+          </tr>
+            
+    </tbody>
+      </table>
+    </div>
+  </div>
